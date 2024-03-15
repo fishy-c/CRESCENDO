@@ -5,6 +5,7 @@ import com.ctre.phoenix6.signals.SensorDirectionValue;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
 
 public final class swerveConstants {
@@ -23,8 +24,8 @@ public final class swerveConstants {
         public static final double steerGearRatio = 10.28;
 
         /* Max Speeds */
-        public static final double maxSpeed = 2;
-        public static final double maxAngularVelocity = 2.0;
+        public static final double maxSpeed = 5;
+        public static final double maxAngularVelocity = 4;
         
         /* Current Limits */
         public static final double driveStatorCurrentLimit = 120;
@@ -42,7 +43,7 @@ public final class swerveConstants {
         public static final double anglekV = 0.0;
 
         /* Wheel Circumference */
-        public static final double wheelCircumferenceMeters = 0.0;
+        public static final double wheelCircumferenceMeters = Units.inchesToMeters(4* Math.PI);
     }
 
     public static final class kinematicsConstants{
@@ -50,11 +51,13 @@ public final class swerveConstants {
         public static final double robotLength = Units.inchesToMeters(28);
         public static final double robotWidth = Units.inchesToMeters(28.5);
 
-        /* Swerve Kinematics */
-        public static final Translation2d FL = new Translation2d(robotLength / 2.0, robotWidth / 2.0);
-        public static final Translation2d FR = new Translation2d(robotLength / 2.0, -robotWidth / 2.0);
-        public static final Translation2d BL = new Translation2d(-robotLength / 2.0, robotWidth / 2.0);
-        public static final Translation2d BR = new Translation2d(-robotLength / 2.0, -robotWidth / 2.0);
+        public static final double trackWidth = 0.60325;
+        public static final double wheelBase = 0.59055;
 
+        /* Swerve Kinematics */
+        public static final Translation2d FL = new Translation2d(wheelBase / 2.0, trackWidth / 2.0);
+        public static final Translation2d FR = new Translation2d(wheelBase / 2.0, -trackWidth / 2.0);
+        public static final Translation2d BL = new Translation2d(-wheelBase / 2.0, trackWidth / 2.0);
+        public static final Translation2d BR = new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0);
     }
 }

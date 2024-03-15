@@ -41,6 +41,7 @@ public class ElevatorIOTalonFX implements ElevatorIO{
     private VoltageOut voltageOutRequest =  new VoltageOut(0).withEnableFOC(true);
     
     double setPointMeters;
+    private boolean climbDown;
     
     LoggedTunableNumber kP = new LoggedTunableNumber("Elevator/kP", 8.413);
     LoggedTunableNumber kD = new LoggedTunableNumber("Elevator/kD", 0.0030141);
@@ -59,6 +60,7 @@ public class ElevatorIOTalonFX implements ElevatorIO{
         leftMotorConfigs = new TalonFXConfiguration();
         rightMotorConfigs = new TalonFXConfiguration();
         setPointMeters = 0;  
+        climbDown = false;
 
         BaseStatusSignal.setUpdateFrequencyForAll(
             50,
@@ -113,17 +115,20 @@ public class ElevatorIOTalonFX implements ElevatorIO{
         leftMotor.setControl(voltageOutRequest.withOutput(output));
     }
 
-    public void driveElevator(double setPointMeters){
+    public void goToSetpoint(double setPointMeters){
+        this.setPointMeters = setPointMeters;
         double setPointRotations = Conversions.metersToRotations(setPointMeters, elevatorConstants.wheelCircumferenceMeters, elevatorConstants.gearRatio);
         leftMotor.setControl(motionMagicRequest.withPosition(setPointRotations));     
     }
 
-    public void setMotionMagicConfigs(boolean down){
-        MotionMagicConfigs climb = new MotionMagicConfigs();
-        climb.MotionMagicCruiseVelocity = down ? elevatorConstants.CruiseVelocityDown : elevatorConstants.CruiseVelocityUp;
-        climb.MotionMagicAcceleration = down ? elevatorConstants.AccelerationDown : elevatorConstants.AccelerationUp;
-
-        leftMotorConfigurator.apply(climb);
+    public void setMotionMagicConfigs(boolean climb){
+        if(this.climbDown != climb){
+            MotionMagicConfigs climbDown = new MotionMagicConfigs();
+            climbDown.MotionMagicCruiseVelocity = climb ? elevatorConstants.CruiseVelocityDown : elevatorConstants.CruiseVelocityUp;
+            climbDown.MotionMagicAcceleration = climb ? elevatorConstants.AccelerationDown : elevatorConstants.AccelerationUp;
+            leftMotorConfigurator.apply(climbDown);
+        }
+        this.climbDown = climb;
     }
 
      

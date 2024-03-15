@@ -63,7 +63,7 @@ public class ModuleIOTalonFX implements ModuleIO {
     LoggedTunableNumber drivekS = new LoggedTunableNumber("Drive/kS", 0);
     LoggedTunableNumber drivekV = new LoggedTunableNumber("Drive/kV", 0);
 
-    LoggedTunableNumber steerkP = new LoggedTunableNumber("Steer/kP", 15);
+    LoggedTunableNumber steerkP = new LoggedTunableNumber("Steer/kP", 8);
     LoggedTunableNumber steerkD = new LoggedTunableNumber("Steer/kD", 0);
     LoggedTunableNumber steerkS = new LoggedTunableNumber("Steer/kS", 0);
     LoggedTunableNumber steerkV = new LoggedTunableNumber("Steer/kV", 0);
@@ -229,19 +229,19 @@ public class ModuleIOTalonFX implements ModuleIO {
                 steerkP.hasChanged(steerkP.hashCode()) ||
                 steerkV.hasChanged(steerkV.hashCode())) {
             var steerSlot0Configs = new Slot0Configs();
-            steerSlot0Configs.kP = steerkP.get();
+            steerSlot0Configs.kP = 11.136;
             steerSlot0Configs.kI = 0.0;
-            steerSlot0Configs.kD = steerkD.get();
-            steerSlot0Configs.kS = steerkS.get();
-            steerSlot0Configs.kV = steerkV.get();
+            steerSlot0Configs.kD = 0.13881;
+            steerSlot0Configs.kS = 0.32456;
+            steerSlot0Configs.kV = 0.12174;
+            steerSlot0Configs.kA = 0.0019929;
 
             steerConfigurator.apply(steerSlot0Configs);
         }
     }
 
     public void setDesiredState(SwerveModuleState optimizedDesiredStates) {
-        double driveVoltage = optimizedDesiredStates.speedMetersPerSecond / (swerveConstants.moduleConstants.maxSpeed)
-                * 12;
+        double driveVoltage = optimizedDesiredStates.speedMetersPerSecond / (swerveConstants.moduleConstants.maxSpeed) * 5;
         double angleDeg = optimizedDesiredStates.angle.getDegrees();
 
         setDriveVoltage(driveVoltage);
