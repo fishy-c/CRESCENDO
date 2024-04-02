@@ -15,7 +15,6 @@ public class TWOPieceMid extends SequentialCommandGroup{
     public TWOPieceMid(Swerve swerve, Superstructure superstructure){
         addRequirements(swerve, superstructure);
         addCommands(
-            
             AutoBuilder.followPath(midForwardPath)
             );
         
