@@ -6,15 +6,20 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Subsystems.Superstructure;
 import frc.robot.Subsystems.Swerve.Swerve;
 import frc.robot.autons.modes.TWOPieceMid;
+import frc.robot.autons.modes.TWOPieceSOURCE;
 import frc.robot.autons.modes.ThreePieceMidSource;
 import frc.robot.autons.modes.TWOPIECE_MID;
+import frc.robot.autons.modes.TWOPieceAMP;
 import frc.robot.autons.modes.Hardstop;
+import frc.robot.autons.modes.MIDCenterTWOPieceSOURCE;
 import frc.robot.autons.modes.PRELOAD_LEAVE_AMP;
 import frc.robot.autons.modes.PRELOAD_LEAVE_MID;
 import frc.robot.autons.modes.PRELOAD_LEAVE_SOURCE;
 import frc.robot.autons.modes.PRELOAD_AMP;
 import frc.robot.autons.modes.PRELOAD_MID;
 import frc.robot.autons.modes.PRELOAD_SOURCE;
+import frc.robot.autons.modes.RushAMP;
+import frc.robot.autons.modes.RushMid;
 
 public class AutonomousSelector {
     private SendableChooser<SequentialCommandGroup> autonomousSelector = new SendableChooser<SequentialCommandGroup>();
@@ -37,9 +42,22 @@ public class AutonomousSelector {
         
         autonomousSelector.addOption("PRE_LOAD_LEAVE_SOURCE", new PRELOAD_LEAVE_SOURCE(swerve, superstructure));
 
-        //autonomousSelector.addOption("ThreePieceMidSource", new ThreePieceMidSource(swerve, superstructure));
-
         //autonomousSelector.addOption("testHardstop", new Hardstop(swerve, superstructure));
+
+
+        autonomousSelector.addOption("PRELOAD_SOURCE", new PRELOAD_SOURCE(swerve, superstructure));
+
+        autonomousSelector.addOption("MIDCenterTWOPieceSource", new MIDCenterTWOPieceSOURCE(swerve, superstructure));
+
+        autonomousSelector.addOption("RushAMP", new RushAMP(swerve, superstructure));
+
+        autonomousSelector.addOption("RushMid", new RushMid(swerve, superstructure));
+
+        autonomousSelector.addOption("TWOPieceAMP", new TWOPieceAMP(swerve, superstructure));
+
+        autonomousSelector.addOption("TWOPieceMid", new TWOPieceMid(swerve, superstructure));
+
+        autonomousSelector.addOption("TWOPieceSOURCE", new TWOPieceSOURCE(swerve, superstructure));
 
         SmartDashboard.putData("Auto Choices", autonomousSelector);
 
