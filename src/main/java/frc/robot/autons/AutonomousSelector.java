@@ -60,7 +60,6 @@ public class AutonomousSelector {
 
         SmartDashboard.putData("Auto Choices", autonomousSelector);
 
-
     }
     
 public SequentialCommandGroup get(){
