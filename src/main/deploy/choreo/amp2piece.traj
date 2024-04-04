@@ -304,7 +304,7 @@
       "command": {
         "type": "named",
         "data": {
-          "name": "ShootMid"
+          "name": "ShootAmp"
         }
       }
     },
@@ -331,7 +331,7 @@
       "command": {
         "type": "named",
         "data": {
-          "name": "ShootMid"
+          "name": "ShootAmp"
         }
       }
     },

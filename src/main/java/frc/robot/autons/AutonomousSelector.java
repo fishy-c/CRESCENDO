@@ -27,12 +27,10 @@ public class AutonomousSelector {
     public AutonomousSelector(Swerve swerve, Superstructure superstructure){
         autonomousSelector.setDefaultOption(
             "PRELOAD_MID", new PRELOAD_MID(swerve, superstructure));
-
+        /* 
         autonomousSelector.addOption("PRELOAD_AMP", new PRELOAD_AMP(swerve, superstructure));
 
         autonomousSelector.addOption("PRELOAD_SOURCE", new PRELOAD_SOURCE(swerve, superstructure));
-
-        //autonomousSelector.addOption("TwoPieceMID", new TWOPieceMid(swerve, superstructure));
 
         autonomousSelector.addOption("TWOPIECE_MID", new TWOPIECE_MID(swerve, superstructure));
 
@@ -46,18 +44,19 @@ public class AutonomousSelector {
 
 
         autonomousSelector.addOption("PRELOAD_SOURCE", new PRELOAD_SOURCE(swerve, superstructure));
+        */
 
-        autonomousSelector.addOption("MIDCenterTWOPieceSource", new MIDCenterTWOPieceSOURCE(swerve, superstructure));
+        autonomousSelector.addOption("testMIDCenterTWOPieceSource", new MIDCenterTWOPieceSOURCE(swerve, superstructure));
 
-        autonomousSelector.addOption("RushAMP", new RushAMP(swerve, superstructure));
+        autonomousSelector.addOption("testRushAMP", new RushAMP(swerve, superstructure));
 
-        autonomousSelector.addOption("RushMid", new RushMid(swerve, superstructure));
+        autonomousSelector.addOption("testRushMid", new RushMid(swerve, superstructure));
 
-        autonomousSelector.addOption("TWOPieceAMP", new TWOPieceAMP(swerve, superstructure));
+        autonomousSelector.addOption("testTWOPieceAMP", new TWOPieceAMP(swerve, superstructure));
 
-        autonomousSelector.addOption("TWOPieceMid", new TWOPieceMid(swerve, superstructure));
+        autonomousSelector.addOption("testTWOPieceMid", new TWOPieceMid(swerve, superstructure));
 
-        autonomousSelector.addOption("TWOPieceSOURCE", new TWOPieceSOURCE(swerve, superstructure));
+        autonomousSelector.addOption("testTWOPieceSOURCE", new TWOPieceSOURCE(swerve, superstructure));
 
         SmartDashboard.putData("Auto Choices", autonomousSelector);
 
