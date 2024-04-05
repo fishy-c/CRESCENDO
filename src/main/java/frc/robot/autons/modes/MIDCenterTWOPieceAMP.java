@@ -13,9 +13,9 @@ import frc.robot.Subsystems.Superstructure;
 import frc.robot.Subsystems.Superstructure.SuperstructureStates;
 import frc.robot.Subsystems.Swerve.Swerve;
 
-public class MIDCenterTWOPieceSOURCE extends SequentialCommandGroup{
+public class MIDCenterTWOPieceAMP extends SequentialCommandGroup{
     private final PathPlannerPath Path = PathPlannerPath.fromChoreoTrajectory("midcenter2piecesource");
-    public MIDCenterTWOPieceSOURCE(Swerve swerve, Superstructure superstructure){
+    public MIDCenterTWOPieceAMP(Swerve swerve, Superstructure superstructure){
         addRequirements(swerve, superstructure);
         addCommands(
             new InstantCommand(() -> swerve.resetPose(new Pose2d(new Translation2d(1.4082368612289429, 5.542632579803467), new Rotation2d(0)))),

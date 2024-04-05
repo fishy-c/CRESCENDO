@@ -13,9 +13,9 @@ import frc.robot.Subsystems.Superstructure;
 import frc.robot.Subsystems.Superstructure.SuperstructureStates;
 import frc.robot.Subsystems.Swerve.Swerve;
 
-public class TWOPieceAMP extends SequentialCommandGroup{
+public class TWOPieceAMPcopy extends SequentialCommandGroup{
     private final PathPlannerPath AmpPath = PathPlannerPath.fromChoreoTrajectory("amp2piece");
-    public TWOPieceAMP(Swerve swerve, Superstructure superstructure){
+    public TWOPieceAMPcopy(Swerve swerve, Superstructure superstructure){
         addRequirements(swerve, superstructure);
         addCommands(
             new InstantCommand(() -> swerve.resetPose(new Pose2d(new Translation2d(0.708526670, 6.740869522094727), new Rotation2d(1.0460006482793265)))),
