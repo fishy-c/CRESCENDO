@@ -16,22 +16,25 @@ import frc.robot.Subsystems.Superstructure;
 import frc.robot.Subsystems.Superstructure.SuperstructureStates;
 import frc.robot.Subsystems.Swerve.Swerve;
 
-public class TwoPieceMid extends SequentialCommandGroup{
-    private final PathPlannerPath MidPath = PathPlannerPath.fromChoreoTrajectory("midcenter");
-    public TwoPieceMid(Swerve swerve, Superstructure superstructure){
+public class TWOPieceMid extends SequentialCommandGroup{
+    private final PathPlannerPath MidPathForward = PathPlannerPath.fromChoreoTrajectory("midcloseforward");
+    private final PathPlannerPath MidPathBackward = PathPlannerPath.fromChoreoTrajectory("midclosebackward");
+    public TWOPieceMid(Swerve swerve, Superstructure superstructure){
         addRequirements(swerve, superstructure);
         addCommands(
-            new InstantCommand(() -> swerve.resetPose(new Pose2d(new Translation2d(1.3711190223693848, 5.55412483215332), new Rotation2d(0)))),
+            new InstantCommand(() -> swerve.resetPose(new Pose2d(new Translation2d(1.3642183542251587, 5.5551371574401855), new Rotation2d(0)))),
             new InstantCommand(() -> superstructure.setState(SuperstructureStates.SPIN_UP_MID)),
-            new WaitCommand(2),
+            new WaitCommand(1.25),
             new ParallelCommandGroup(
-            AutoBuilder.followPath(MidPath),
+            AutoBuilder.followPath(MidPathForward),
             new SequentialCommandGroup(
                 new WaitCommand(0.7),
                 new InstantCommand(() -> superstructure.setState(SuperstructureStates.INTAKE)))
                 ),
+            new WaitCommand(0.3),
+            AutoBuilder.followPath(MidPathBackward),
             new ParallelCommandGroup(
-                new WaitCommand(2),
+                new WaitCommand(1.25),
                 new InstantCommand(() -> superstructure.setState(SuperstructureStates.SHOOT_MID))
             )
             );
