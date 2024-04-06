@@ -13,6 +13,7 @@ import frc.robot.autons.modes.EFarAMP;
 import frc.robot.autons.modes.EFarMIDTHREE; //EFarAMP with TWOPieceMid
 import frc.robot.autons.modes.THREEPieceAMP;
 import frc.robot.autons.modes.THREEPieceMid;
+import frc.robot.autons.modes.NAMEDTWOPieceMid;
 
 public class AutonomousSelector {
     private SendableChooser<SequentialCommandGroup> autonomousSelector = new SendableChooser<SequentialCommandGroup>();
