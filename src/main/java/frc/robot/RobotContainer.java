@@ -58,13 +58,6 @@ public class RobotContainer {
             )
         );
 
-    NamedCommands.registerCommand("Intake", new InstantCommand(() -> superstructure.setState(SuperstructureStates.INTAKE)));
-    NamedCommands.registerCommand("ShootMid", new InstantCommand(() -> superstructure.setState(SuperstructureStates.SHOOT_MID)));
-    SuperstructureStates shootSideSource = DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue ? SuperstructureStates.SHOOT_RIGHT : SuperstructureStates.SHOOT_LEFT;
-    NamedCommands.registerCommand("ShootSource", new InstantCommand(() -> superstructure.setState(shootSideSource)));
-    SuperstructureStates shootSideAmp = DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue ? SuperstructureStates.SHOOT_LEFT : SuperstructureStates.SHOOT_RIGHT;
-    NamedCommands.registerCommand("ShootAmp", new InstantCommand(() -> superstructure.setState(shootSideAmp)));
-    
     configureBindings();
     configureDefaultCommands();
 
