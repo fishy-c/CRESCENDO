@@ -35,6 +35,8 @@ public class AutonomousSelector {
 
         autonomousSelector.addOption("THREEPieceMid", new THREEPieceMid(swerve, superstructure));
 
+        autonomousSelector.addOption("NAMEDTWOPieceMid", new NAMEDTWOPieceMid(swerve, superstructure));
+
         SmartDashboard.putData("Auto Choices", autonomousSelector);
 
     }
