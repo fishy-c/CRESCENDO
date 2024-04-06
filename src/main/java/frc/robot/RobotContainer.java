@@ -43,6 +43,14 @@ public class RobotContainer {
   private final Superstructure superstructure = new Superstructure(s_intake, s_handoff, s_elevator, s_shooter, led);
   private final Swerve s_swerve = new Swerve();
   public RobotContainer() {
+    
+    NamedCommands.registerCommand("Intake", new InstantCommand(() -> superstructure.setState(SuperstructureStates.INTAKE)));
+    NamedCommands.registerCommand("ShootMid", new InstantCommand(() -> superstructure.setState(SuperstructureStates.SHOOT_MID)));
+    SuperstructureStates shootSideSource = DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue ? SuperstructureStates.SPIN_UP_RIGHT : SuperstructureStates.SPIN_UP_RIGHT;
+    NamedCommands.registerCommand("ShootSource", new InstantCommand(() -> superstructure.setState(shootSideSource)));
+    SuperstructureStates shootSideAmp = DriverStation.getAlliance().equals(Alliance.Blue) ? SuperstructureStates.SPIN_UP_LEFT : SuperstructureStates.SPIN_UP_LEFT;
+    NamedCommands.registerCommand("ShootAmp", new InstantCommand(() -> superstructure.setState(shootSideAmp)));
+
     configureAutonomousSelector();
     s_elevator.elevatorConfiguration();
     s_shooter.shooterConfiguration();
