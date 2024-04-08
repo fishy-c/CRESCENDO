@@ -26,7 +26,7 @@ public class AutonomousSelector {
         
         autonomousSelector.addOption("testTWOPieceSOURCE", new TWOPieceSOURCE(swerve, superstructure));
 
-        autonomousSelector.addOption("testEFarMID", new EFarMID(swerve, superstructure));
+        autonomousSelector.addOption("testEFarMID", new EFarMID(swerve, superstructure)); //THIS WILL RUN INTO NOTE!
 
         autonomousSelector.addOption("testEFarAMP", new EFarAMP(swerve, superstructure));
 

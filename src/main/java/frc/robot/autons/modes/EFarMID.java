@@ -18,7 +18,7 @@ import frc.robot.Subsystems.Superstructure;
 import frc.robot.Subsystems.Superstructure.SuperstructureStates;
 import frc.robot.Subsystems.Swerve.Swerve;
 
-public class EFarMID extends SequentialCommandGroup{
+public class EFarMID extends SequentialCommandGroup{ 
     private final PathPlannerPath MidPathForward = PathPlannerPath.fromChoreoTrajectory("Emidfarforward");
     private final PathPlannerPath MidPathBackward = PathPlannerPath.fromChoreoTrajectory("Emidfarbackward");
     public EFarMID(Swerve swerve, Superstructure superstructure){
