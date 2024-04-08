@@ -22,9 +22,11 @@ public class TWOPieceSOURCE extends SequentialCommandGroup{
     private final PathPlannerPath SourcePathBackward = PathPlannerPath.fromChoreoTrajectory("sourceclosebackward");
     public TWOPieceSOURCE(Swerve swerve, Superstructure superstructure){
     SuperstructureStates shootSide = DriverStation.getAlliance().equals(Alliance.Blue) ? SuperstructureStates.SPIN_UP_RIGHT : SuperstructureStates.SPIN_UP_RIGHT;
+    final double X_initial = DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue ? 0.6709336638450623 : 16.54 - 0.6709336638450623;
+    final double Rot_initial = DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue ? -1.0471975512 : -2*1.0471975512;
         addRequirements(swerve, superstructure);
         addCommands(
-            new InstantCommand(() -> swerve.resetPose(new Pose2d(new Translation2d(0.6709336638450623,4.377834320068359), new Rotation2d(-1.0471975512)))),
+            new InstantCommand(() -> swerve.resetPose(new Pose2d(new Translation2d(X_initial,4.377834320068359), new Rotation2d(Rot_initial)))),
             new InstantCommand(() -> superstructure.setState(shootSide)),
             new WaitCommand(1.25),
             new ParallelCommandGroup(

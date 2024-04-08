@@ -16,14 +16,18 @@ import frc.robot.Subsystems.Superstructure;
 import frc.robot.Subsystems.Superstructure.SuperstructureStates;
 import frc.robot.Subsystems.Swerve.Swerve;
 
+
+
 public class TWOPieceAMP extends SequentialCommandGroup{
     private final PathPlannerPath AmpPathForward = PathPlannerPath.fromChoreoTrajectory("ampcloseforward");
     private final PathPlannerPath AmpPathBackward = PathPlannerPath.fromChoreoTrajectory("ampclosebackward");
     public TWOPieceAMP(Swerve swerve, Superstructure superstructure){
     SuperstructureStates shootSide = DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue ? SuperstructureStates.SPIN_UP_LEFT : SuperstructureStates.SPIN_UP_LEFT;
+    final double X_initial = DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue ? 0.6815703511238098 : 16.54 - 0.6815703511238098;
+    final double Rot_initial = DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Blue ? 1.0471975512 : 2*1.0471975512;
         addRequirements(swerve, superstructure);
         addCommands(
-            new InstantCommand(() -> swerve.resetPose(new Pose2d(new Translation2d(0.6815703511238098,6.723508358001709), new Rotation2d(1.0471975512)))),
+            new InstantCommand(() -> swerve.resetPose(new Pose2d(new Translation2d(X_initial,6.723508358001709), new Rotation2d(Rot_initial)))),
             new InstantCommand(() -> superstructure.setState(shootSide)),
             new WaitCommand(1.25),
             new ParallelCommandGroup(

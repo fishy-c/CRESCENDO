@@ -50,6 +50,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("ShootSource", new InstantCommand(() -> superstructure.setState(shootSideSource)));
     SuperstructureStates shootSideAmp = DriverStation.getAlliance().equals(Alliance.Blue) ? SuperstructureStates.SPIN_UP_LEFT : SuperstructureStates.SPIN_UP_LEFT;
     NamedCommands.registerCommand("ShootAmp", new InstantCommand(() -> superstructure.setState(shootSideAmp)));
+    NamedCommands.registerCommand("Wait0.3", new WaitCommand(0.3));
+    NamedCommands.registerCommand("Wait1.25", new WaitCommand(1.25));
 
     configureAutonomousSelector();
     s_elevator.elevatorConfiguration();
